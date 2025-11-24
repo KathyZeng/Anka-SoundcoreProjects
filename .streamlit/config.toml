@@ -1,0 +1,20 @@
+[theme]
+# 主题颜色配置
+primaryColor = "#667eea"  # 主色调 - 蓝紫色
+backgroundColor = "#f8f9fa"  # 背景色 - 浅灰
+secondaryBackgroundColor = "#ffffff"  # 次要背景色 - 白色
+textColor = "#1f2937"  # 文字颜色 - 深灰
+font = "sans serif"  # 字体
+
+[server]
+# 服务器配置
+headless = true
+port = 8504
+
+[browser]
+# 浏览器配置
+gatherUsageStats = false
+
+[client]
+# 客户端配置
+showSidebarNavigation = true

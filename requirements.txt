@@ -1,0 +1,30 @@
+# 工作负载饱和度分析系统 - 依赖包列表
+# Python 版本要求: >=3.8
+
+# Web框架
+streamlit>=1.28.0
+
+# 数据处理
+pandas>=2.0.0
+numpy>=1.24.0
+openpyxl>=3.1.0  # Excel文件读写
+
+# 可视化
+plotly>=5.17.0
+
+# 配置管理
+PyYAML>=6.0.1
+
+# 日期时间处理
+python-dateutil>=2.8.2
+
+# 日志
+logging
+
+# 其他标准库(通常已包含在Python中,无需安装)
+# - os
+# - sys
+# - io
+# - json
+# - datetime
+# - typing

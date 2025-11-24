@@ -1,0 +1,24 @@
+base_date:
+  use_today_by_default: true
+other_tasks:
+  enabled: true
+  weekly_minutes_per_person: 92
+primary_responsibility:
+  enabled: true
+  members:
+  - harry.gu
+  - louiskoo.qin
+  - zhipeng.lu
+  - jennifer.ren
+  - sam.liu
+  - bart.pang
+  - muchao.ke
+  - timi.yang
+  - vlad.li
+  weekly_percentage: 0.5
+saturation_thresholds:
+  normal_max: 110
+  normal_min: 90
+  over_saturated_min: 110
+  under_saturated_max: 90
+standard_hours_per_week: 40
