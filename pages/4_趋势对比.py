@@ -44,7 +44,7 @@ visualizer = WorkloadVisualizer()
 processed_files = storage.get_processed_files(limit=50)
 
 if not processed_files:
-    st.warning("⚠️ 暂无历史数据,请先在 [数据上传](1_📊_数据上传) 页面上传并处理数据")
+    st.warning("⚠️ 暂无历史数据,请先在 [数据上传](1_数据上传) 页面上传并处理数据")
     st.stop()
 
 # 显示可用的历史数据

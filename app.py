@@ -208,13 +208,13 @@ def main():
         col_btn1, col_btn2, col_btn3 = st.columns(3)
 
         with col_btn1:
-            st.page_link("pages/2_🔍_数据预览.py", label="📋 查看数据预览", icon="🔍", use_container_width=True)
+            st.page_link("pages/2_数据预览.py", label="📋 查看数据预览", icon="🔍", use_container_width=True)
 
         with col_btn2:
-            st.page_link("pages/3_📈_负载分析.py", label="📊 查看负载分析", icon="📈", use_container_width=True)
+            st.page_link("pages/3_负载分析.py", label="📊 查看负载分析", icon="📈", use_container_width=True)
 
         with col_btn3:
-            st.page_link("pages/4_📉_趋势对比.py", label="📉 查看趋势对比", icon="📉", use_container_width=True)
+            st.page_link("pages/4_趋势对比.py", label="📉 查看趋势对比", icon="📉", use_container_width=True)
 
 if __name__ == "__main__":
     main()

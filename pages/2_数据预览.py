@@ -40,7 +40,7 @@ storage = StorageManager()
 processed_files = storage.get_processed_files(limit=50)
 
 if not processed_files:
-    st.warning("⚠️ 暂无数据,请先在 [数据上传](1_📊_数据上传) 页面上传文件")
+    st.warning("⚠️ 暂无数据,请先在 [数据上传](1_数据上传) 页面上传文件")
     st.stop()
 
 # 创建历史数据选择器
@@ -124,6 +124,43 @@ with col4:
 
 st.markdown("---")
 
+# 本周统计（总览）
+st.subheader("📊 本周统计")
+col_stat1, col_stat2, col_stat3, col_stat4, col_stat5 = st.columns(5)
+
+with col_stat1:
+    st.metric("平均饱和度", f"{stats['current_week']['avg_saturation']}%")
+
+with col_stat2:
+    st.metric("🔴 超负荷", f"{stats['current_week']['overloaded']} 人")
+    if stats['current_week']['overloaded'] > 0:
+        with st.expander("查看详情"):
+            overloaded_current = result_df[result_df['本周状态'] == '超负荷'][['成员', '本周总工时', '本周饱和度(%)']]
+            st.dataframe(overloaded_current, use_container_width=True, hide_index=True)
+
+with col_stat3:
+    st.metric("🟢 正常", f"{stats['current_week']['normal']} 人")
+    if stats['current_week']['normal'] > 0:
+        with st.expander("查看详情"):
+            normal_current = result_df[result_df['本周状态'] == '正常'][['成员', '本周总工时', '本周饱和度(%)']]
+            st.dataframe(normal_current, use_container_width=True, hide_index=True)
+
+with col_stat4:
+    st.metric("🔵 不饱和", f"{stats['current_week']['under_saturated']} 人")
+    if stats['current_week']['under_saturated'] > 0:
+        with st.expander("查看详情"):
+            under_current = result_df[result_df['本周状态'] == '不饱和'][['成员', '本周总工时', '本周饱和度(%)']]
+            st.dataframe(under_current, use_container_width=True, hide_index=True)
+
+with col_stat5:
+    st.metric("⚪ 空闲", f"{stats['current_week']['idle']} 人")
+    if stats['current_week']['idle'] > 0:
+        with st.expander("查看详情"):
+            idle_current = result_df[result_df['本周状态'] == '空闲'][['成员', '本周总工时', '本周饱和度(%)']]
+            st.dataframe(idle_current, use_container_width=True, hide_index=True)
+
+st.markdown("---")
+
 # 数据筛选选项
 st.subheader("🔧 数据筛选")
 
@@ -186,41 +223,6 @@ with tab1:
         use_container_width=True,
         height=500
     )
-
-    # 本周统计
-    st.markdown("### 📊 本周统计")
-    col_stat1, col_stat2, col_stat3, col_stat4, col_stat5 = st.columns(5)
-
-    with col_stat1:
-        st.metric("平均饱和度", f"{stats['current_week']['avg_saturation']}%")
-
-    with col_stat2:
-        st.metric("🔴 超负荷", f"{stats['current_week']['overloaded']} 人")
-        if stats['current_week']['overloaded'] > 0:
-            with st.expander("查看详情"):
-                overloaded_current = filtered_df[filtered_df['本周状态'] == '超负荷'][['成员', '本周总工时', '本周饱和度(%)']]
-                st.dataframe(overloaded_current, use_container_width=True, hide_index=True)
-
-    with col_stat3:
-        st.metric("🟢 正常", f"{stats['current_week']['normal']} 人")
-        if stats['current_week']['normal'] > 0:
-            with st.expander("查看详情"):
-                normal_current = filtered_df[filtered_df['本周状态'] == '正常'][['成员', '本周总工时', '本周饱和度(%)']]
-                st.dataframe(normal_current, use_container_width=True, hide_index=True)
-
-    with col_stat4:
-        st.metric("🔵 不饱和", f"{stats['current_week']['under_saturated']} 人")
-        if stats['current_week']['under_saturated'] > 0:
-            with st.expander("查看详情"):
-                under_current = filtered_df[filtered_df['本周状态'] == '不饱和'][['成员', '本周总工时', '本周饱和度(%)']]
-                st.dataframe(under_current, use_container_width=True, hide_index=True)
-
-    with col_stat5:
-        st.metric("⚪ 空闲", f"{stats['current_week']['idle']} 人")
-        if stats['current_week']['idle'] > 0:
-            with st.expander("查看详情"):
-                idle_current = filtered_df[filtered_df['本周状态'] == '空闲'][['成员', '本周总工时', '本周饱和度(%)']]
-                st.dataframe(idle_current, use_container_width=True, hide_index=True)
 
 with tab2:
     st.subheader("下周工作负载数据(含变化率)")
@@ -452,4 +454,4 @@ else:
     st.success("✅ 未发现工时大幅增加的成员")
 
 st.markdown("---")
-st.caption("💡 提示: 如果发现数据异常,请返回 [数据上传](1_📊_数据上传) 页面重新上传正确的数据")
+st.caption("💡 提示: 如果发现数据异常,请返回 [数据上传](1_数据上传) 页面重新上传正确的数据")
